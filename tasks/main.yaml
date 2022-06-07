@@ -1,0 +1,12 @@
+---
+- name: Configure JUNOS Routing Instances
+  junos_config:
+    lines: "{{ lookup('template', 'junos_routing_instances_config.j2').split('\n') }}"
+    comment: Update routing_instances 
+  when: routing_instances_remove == False
+
+- name: Remove JUNOS Routing Instances
+  junos_config:
+    lines: "{{ lookup('template', 'junos_routing_instances_remove.j2').split('\n') }}"
+    comment: Remove routing_instances 
+  when: routing_instances_remove == True

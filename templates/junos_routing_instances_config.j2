@@ -1,0 +1,6 @@
+{% for instance in routing_instances %}
+set routing-instances {{ instance.name }} instance-type {{ instance.type }} 
+{% for interface in instance.interfaces %}
+set routing-instances {{ instance.name }} interface {{ interface.name }}
+{% endfor %}
+{% endfor %}
